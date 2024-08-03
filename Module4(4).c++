@@ -359,8 +359,61 @@ main()
 /*6. Write a C++ Program to show access to Private Public and Protected using
 Inheritance*/
 
-// doubt
+#include <iostream>
 
+using namespace std;
+
+class Base
+{
+private:
+    int privateVar;
+protected:
+    int protectedVar;
+public:
+    int publicVar;
+
+    Base() : privateVar(0), protectedVar(0), publicVar(0) {}
+
+    void display()
+    {
+        cout << "Base Class - Private Variable: " << privateVar << endl;
+        cout << "Base Class - Protected Variable: " << protectedVar << endl;
+        cout << "Base Class - Public Variable: " << publicVar << endl;
+    }
+
+    int getPrivateVar()
+    {
+        return privateVar;
+    }
+};
+
+class Derived : public Base
+{
+public:
+    void show()
+    {
+        cout << "Derived Class - Protected Variable: " << protectedVar << endl;
+        cout << "Derived Class - Public Variable: " << publicVar << endl;
+    }
+};
+
+int main()
+{
+    Base base;
+    Derived derived;
+
+    cout << "Accessing from Base class object:" << endl;
+    base.display();
+
+    cout << "\nAccessing from Derived class object:" << endl;
+    derived.show();
+
+    cout << "\nDirect access to public member of base class object: " << base.publicVar << endl;
+
+    cout << "Access private member of base class object using getter: " << base.getPrivateVar() << endl;
+
+    return 0;
+}
 /*7. Write a C++ Program to illustrates the use of Constructors in multilevel
 inheritance*/
 
