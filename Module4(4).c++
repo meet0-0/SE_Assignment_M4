@@ -514,7 +514,58 @@ int main()
 // doubt
 
 /*10.Write a program to concatenate the two strings using Operator Overloading*/
-// doubt
+#include <iostream>
+#include <cstring>
+
+class String
+{
+private:
+    char *str;
+
+public:
+    String(const char *s = "")
+    {
+        str = new char[strlen(s) + 1];
+        strcpy(str, s);
+    }
+
+    String(const String &s)
+    {
+        str = new char[strlen(s.str) + 1];
+        strcpy(str, s.str);
+    }
+
+    ~String()
+    {
+        delete[] str;
+    }
+
+    String operator+(const String &s)
+    {
+        char *tempStr = new char[strlen(str) + strlen(s.str) + 1];
+        strcpy(tempStr, str);
+        strcat(tempStr, s.str);
+        String temp(tempStr);
+        delete[] tempStr;
+        return temp;
+    }
+    void display() const
+    {
+        std::cout << str << std::endl;
+    }
+};
+
+int main()
+{
+    String s1("Hello, ");
+    String s2("World!");
+    String s3 = s1 + s2;
+
+    std::cout << "Concatenated String: ";
+    s3.display();
+
+    return 0;
+}
 
 /*11.Write a c++ program to calculate the area of circle, rectangle and triangle
 using Function Overloading
